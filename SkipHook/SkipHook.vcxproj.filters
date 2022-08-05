@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Quelldateien">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Headerdateien">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Headerdateien\hde">
+      <UniqueIdentifier>{bd13ea94-a523-4964-b1cf-c72e2eb38ddf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headerdateien\skiphook">
+      <UniqueIdentifier>{9c0b1bc3-7a4a-4833-bd98-e96f3c326c37}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="hde64.c">
+      <Filter>Headerdateien\hde</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="hde64.h">
+      <Filter>Headerdateien\hde</Filter>
+    </ClInclude>
+    <ClInclude Include="table64.h">
+      <Filter>Headerdateien\hde</Filter>
+    </ClInclude>
+    <ClInclude Include="skiphook.h">
+      <Filter>Headerdateien\skiphook</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
