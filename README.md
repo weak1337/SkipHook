@@ -1,5 +1,5 @@
 # SkipHook
-SkipHook is a header-only library that allows you to create function wrappers that skip the first instruction.
+SkipHook is a header-only library that allows you to create function wrappers that skip the first instruction (x64 / x86).
 
 # Why?
 Certain AntiCheats (eg. Battleye) try to find Cheaters by verifying the RETURNADDRESS of specific WinApi- / Gamefunctions. 
