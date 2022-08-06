@@ -23,6 +23,9 @@
     <ClCompile Include="main.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
+    <ClCompile Include="hde32.c">
+      <Filter>Headerdateien\hde</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="hde64.h">
@@ -33,6 +36,12 @@
     </ClInclude>
     <ClInclude Include="skiphook.h">
       <Filter>Headerdateien\skiphook</Filter>
+    </ClInclude>
+    <ClInclude Include="hde32.h">
+      <Filter>Headerdateien\hde</Filter>
+    </ClInclude>
+    <ClInclude Include="table32.h">
+      <Filter>Headerdateien\hde</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -127,12 +127,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="hde32.c" />
     <ClCompile Include="hde64.c" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="hde32.h" />
     <ClInclude Include="hde64.h" />
     <ClInclude Include="skiphook.h" />
+    <ClInclude Include="table32.h" />
     <ClInclude Include="table64.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

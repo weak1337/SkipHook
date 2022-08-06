@@ -1,5 +1,6 @@
 #pragma once
 #include "hde64.h"
+#include "hde32.h"
 #include <iostream>
 #pragma section(".0dev", execute, read, write)
 #pragma comment(linker,"/SECTION:.0dev,ERW")
@@ -11,7 +12,8 @@ namespace skip_hook {
 
 	template <typename T>
 	T make_skip_hook(uint64_t address) {
-	
+
+#if _WIN64
 		auto is_minhooked = false;
 		while (*(uint8_t*)address == 0xE9)
 			address += *(int32_t*)(address + 1) + 5;
@@ -31,8 +33,15 @@ namespace skip_hook {
 			address = *(uint64_t*)(address + *(int32_t*)(address + 3) + 7);
 		}
 
+
 		hde64s info = {};
 		hde64_disasm((void*)address, &info);
+#else
+		while (*(uint8_t*)address == 0xE9)
+			address += *(int32_t*)(address + 1) + 5;
+		hde32s info = {};
+		hde32_disasm((void*)address, &info);
+#endif
 
 		if (info.flags & F_ERROR) //Couldn't decode
 			return nullptr;
@@ -43,14 +52,19 @@ namespace skip_hook {
 		if ((info.modrm & 0xC7) == 0x05) //Rip relative
 			return nullptr;
 
+#if _WIN64
 		uint8_t jmp_stub[] = { 0xFF, 0x25, 0x00,0x00,0x00,0x00, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF };
-
+		*(uint64_t*)(&jmp_stub[6]) = address + info.len;
+#else
+		uint8_t jmp_stub[] = { 0xE9, 0x00, 0x00, 0x00, 0x00 };
+		*(int32_t*)(&jmp_stub[1]) = (int32_t)(address - (uint64_t)&allocation[tracker + info.len] + info.len - sizeof(jmp_stub));
+#endif
 		if (tracker + sizeof(jmp_stub) + info.len > 0x1000) {
 			std::cout << "Please increase section size!" << std::endl;
 			return nullptr;
 		}
 
-		*(uint64_t*)(&jmp_stub[6]) = address + info.len;
+		
 
 		for (int i = 0; i < info.len; i++) {
 			allocation[tracker + i] = *(uint8_t*)(address + i);
